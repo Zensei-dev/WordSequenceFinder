@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSequenceFinder.Core", "WordSequenceFinder.Core\WordSequenceFinder.Core.csproj", "{0C0740C2-F222-47B0-A023-692991B3EC09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSequenceFinder.Test.Unit", "WordSequenceFinder.Test.Unit\WordSequenceFinder.Test.Unit.csproj", "{4EEA83EE-4E6C-4056-AB5D-413099150BD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C0740C2-F222-47B0-A023-692991B3EC09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0740C2-F222-47B0-A023-692991B3EC09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0740C2-F222-47B0-A023-692991B3EC09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0740C2-F222-47B0-A023-692991B3EC09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EEA83EE-4E6C-4056-AB5D-413099150BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EEA83EE-4E6C-4056-AB5D-413099150BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EEA83EE-4E6C-4056-AB5D-413099150BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EEA83EE-4E6C-4056-AB5D-413099150BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3066A0F-1E7A-476F-8D52-0787E2F00DC3}
+	EndGlobalSection
+EndGlobal
