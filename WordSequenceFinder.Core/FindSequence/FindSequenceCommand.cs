@@ -1,8 +1,8 @@
-﻿using FluentValidation;
+﻿using MediatR;
 
 namespace WordSequenceFinder.Core.FindSequence
 {
-    public class FindSequenceCommand : AbstractValidator<FindSequenceCommand>
+    public class FindSequenceCommand : IRequest
     {
         public string DictionaryLocation { get; set; }
         public string StartWord { get; set; }

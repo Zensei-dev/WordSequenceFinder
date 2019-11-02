@@ -2,7 +2,7 @@
 using WordSequenceFinder.Core.FindSequence;
 using Xunit;
 
-namespace WordSequenceFinder.Test.Unit.FindSequence
+namespace WordSequenceFinder.Test.Unit.Core.FindSequence
 {
     public class FindSequenceCommandTests
     {
