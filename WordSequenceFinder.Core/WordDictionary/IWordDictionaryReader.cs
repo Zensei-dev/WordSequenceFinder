@@ -1,7 +1,9 @@
-﻿namespace WordSequenceFinder.Core.Dictionary
+﻿using System.Threading.Tasks;
+
+namespace WordSequenceFinder.Core.Dictionary
 {
     public interface IWordDictionaryReader
     {
-        WordDictionary Read(string dictionary);
+        Task<WordDictionary> Read(string dictionary);
     }
 }

@@ -10,7 +10,7 @@ using Xunit;
 
 namespace WordSequenceFinder.Test.Unit.ConsoleApp
 {
-    public class RequestServiceTests
+    public class ConsoleMediatorTests
     {
         [Fact]
         public async Task GivenFindSequenceOptions_WhenRaiseRequestForFindSequenceCommand_ThenRequestRaised()
@@ -18,20 +18,19 @@ namespace WordSequenceFinder.Test.Unit.ConsoleApp
             // Arrange
             var mapperMock = new Mock<IMapper>();
             var mediatorMock = new Mock<IMediator>();
-            var loggerMock = new Mock<ILogger<RequestService>>();
+            var resultHandler = new Mock<IResultHandler>();
+            var loggerMock = new Mock<ILogger<ConsoleMediator>>();
 
-            var requestService = new RequestService(mapperMock.Object, mediatorMock.Object, loggerMock.Object);
+            var requestService = new ConsoleMediator(mapperMock.Object, mediatorMock.Object, resultHandler.Object, loggerMock.Object);
             var findSequenceOptions = new FindSequenceOptions();
 
             // Act
-            await requestService.RaiseRequest<FindSequenceOptions, FindSequenceCommand>(findSequenceOptions);
+            await requestService.RaiseRequestAndReturnExitCodeAsync<FindSequenceOptions, FindSequenceCommand>(findSequenceOptions);
 
             // Assert
             mapperMock.Verify(mapper => mapper.Map<FindSequenceCommand>(findSequenceOptions));
             mediatorMock.Verify(mediator => mediator.Send(It.IsAny<FindSequenceCommand>(), default));
+            resultHandler.Verify(result => result.HandleResultAndReturnExitCode(It.IsAny<HandlerResult>(), typeof(FindSequenceCommand).ToString()));
         }
-
-        // Unknown map type
-        // Unknown mediation
     }
 }

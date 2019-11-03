@@ -1,13 +1,14 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using WordSequenceFinder.Core.Dictionary;
 
 namespace WordSequenceFinder.Infrastructure.Dictionary
 {
     public class WordDictionaryReader : IWordDictionaryReader
     {
-        public WordDictionary Read(string dictionary)
+        public async Task<WordDictionary> Read(string dictionary)
         {
-            var fileContents = File.ReadAllLines(dictionary);
+            var fileContents = await File.ReadAllLinesAsync(dictionary);
 
             return new WordDictionary(fileContents);
         }

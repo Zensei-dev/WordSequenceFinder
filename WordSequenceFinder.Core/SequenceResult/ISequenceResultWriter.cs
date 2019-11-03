@@ -1,7 +1,9 @@
-﻿namespace WordSequenceFinder.Core.Sequence
+﻿using System.Threading.Tasks;
+
+namespace WordSequenceFinder.Core.Sequence
 {
     public interface ISequenceResultWriter
     {
-        void Write(SequenceResult result, string resultLocation);
+        Task Write(SequenceResult result, string resultLocation);
     }
 }

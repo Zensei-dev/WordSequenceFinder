@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordSequenceFinder.Test.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordSequenceFinder.ConsoleApp", "WordSequenceFinder.ConsoleApp\WordSequenceFinder.ConsoleApp.csproj", "{AF480C44-2C4E-4DCE-AAF2-0C7DBDD3F342}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSequenceFinder.Infrastructure", "WordSequenceFinder.Infrastructure\WordSequenceFinder.Infrastructure.csproj", "{B01C436C-69B5-4DA7-9C22-5CFB4F348541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordSequenceFinder.Infrastructure", "WordSequenceFinder.Infrastructure\WordSequenceFinder.Infrastructure.csproj", "{B01C436C-69B5-4DA7-9C22-5CFB4F348541}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

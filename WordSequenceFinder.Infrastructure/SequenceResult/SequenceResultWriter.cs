@@ -1,13 +1,14 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using WordSequenceFinder.Core.Sequence;
 
 namespace WordSequenceFinder.Infrastructure.Sequence
 {
     public class SequenceResultWriter : ISequenceResultWriter
     {
-        public void Write(SequenceResult result, string resultLocation)
+        public async Task Write(SequenceResult result, string resultLocation)
         {
-            File.WriteAllLines(resultLocation, result.GetResult());
+            await File.WriteAllLinesAsync(resultLocation, result.GetResult());
         }
     }
 }

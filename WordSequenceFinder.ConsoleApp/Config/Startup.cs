@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Reflection;
 using WordSequenceFinder.Core.Dictionary;
@@ -17,8 +18,11 @@ namespace WordSequenceFinder.ConsoleApp.Config
         {
             var services = new ServiceCollection();
 
-            services.AddLogging()
-                    .AddTransient<IRequestService, RequestService>()
+            services.AddLogging(cfg => cfg.AddConsole()
+                                          .SetMinimumLevel(LogLevel.Information))
+                    .AddTransient<IOptionsHandler, OptionsHandler>()
+                    .AddTransient<IConsoleMediator, ConsoleMediator>()
+                    .AddTransient<IResultHandler, ConsoleResultHandler>()
                     .AddAutoMapper(typeof(ConsoleStartup))
                     .AddMediatR(typeof(ConsoleStartup).GetTypeInfo().Assembly, 
                                 typeof(FindSequenceRequestHandler).GetTypeInfo().Assembly)

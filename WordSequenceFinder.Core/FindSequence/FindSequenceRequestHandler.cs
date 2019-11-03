@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WordSequenceFinder.Core.Dictionary;
@@ -7,7 +9,7 @@ using WordSequenceFinder.Core.Sequence;
 
 namespace WordSequenceFinder.Core.FindSequence
 {
-    public class FindSequenceRequestHandler : AsyncRequestHandler<FindSequenceCommand>
+    public class FindSequenceRequestHandler : IRequestHandler<FindSequenceCommand, HandlerResult>
     {
         private readonly IWordDictionaryReader _wordDictionaryReader;
         private readonly ISequenceFinder _sequenceFinder;
@@ -22,24 +24,49 @@ namespace WordSequenceFinder.Core.FindSequence
             _sequenceResultWriter = sequenceResultWriter;
         }
 
-        protected override Task Handle(FindSequenceCommand command, CancellationToken cancellationToken)
+        public async Task<HandlerResult> Handle(FindSequenceCommand command, CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await HandleCommand(command);
+            }
+            catch(Exception ex)
+            {
+                return new HandlerResult
+                {
+                    IsSuccessful = false,
+                    ErrorList = new List<string> { "An unexpected exception has occurred" },
+                    Exceptions = new List<Exception> { ex }
+                };
+            }
+        }
+
+        private async Task<HandlerResult> HandleCommand(FindSequenceCommand command)
         {
             var validator = new FindSequenceCommandValidator();
             var validationResult = validator.Validate(command);
 
             if (validationResult.IsValid)
             {
-                var wordDictionary = _wordDictionaryReader.Read(command.DictionaryLocation);
+                var wordDictionary = await _wordDictionaryReader.Read(command.DictionaryLocation);
 
                 var result = _sequenceFinder.Find(wordDictionary, command.StartWord, command.EndWord);
 
-                _sequenceResultWriter.Write(result, command.ResultLocation);
+                await _sequenceResultWriter.Write(result, command.ResultLocation);
 
-                return Task.CompletedTask;
+                return new HandlerResult()
+                {
+                    IsSuccessful = true,
+                    Result = result
+                };
             }
             else
             {
-                throw new Exception();
+                return new HandlerResult()
+                {
+                    IsSuccessful = false,
+                    ErrorList = validationResult.Errors.Select(err => err.ErrorMessage)
+                };
             }
         }
     }
