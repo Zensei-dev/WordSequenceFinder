@@ -1,6 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
-using WordSequenceFinder.Core.Sequence;
+using WordSequenceFinder.Core.FindSequence.Result;
 
 namespace WordSequenceFinder.Infrastructure.Sequence
 {
@@ -8,7 +9,11 @@ namespace WordSequenceFinder.Infrastructure.Sequence
     {
         public async Task Write(SequenceResult result, string resultLocation)
         {
-            await File.WriteAllLinesAsync(resultLocation, result.GetResult());
+            var output = result.Words.Count > 0 
+                ? result.Words 
+                : new List<string> { "No result found!" };
+
+            await File.WriteAllLinesAsync(resultLocation, output);
         }
     }
 }

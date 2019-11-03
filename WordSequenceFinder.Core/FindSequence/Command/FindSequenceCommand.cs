@@ -1,6 +1,7 @@
 ﻿using MediatR;
+using WordSequenceFinder.Core.Models;
 
-namespace WordSequenceFinder.Core.FindSequence
+namespace WordSequenceFinder.Core.FindSequence.Command
 {
     public class FindSequenceCommand : IRequest<HandlerResult>
     {

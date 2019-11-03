@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace WordSequenceFinder.Core.Dictionary
+namespace WordSequenceFinder.Core.FindSequence.Dictionary
 {
     public interface IWordDictionaryReader
     {

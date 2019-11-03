@@ -1,19 +1,21 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System.Threading.Tasks;
-using WordSequenceFinder.Core.Dictionary;
 using WordSequenceFinder.Core.FindSequence;
-using WordSequenceFinder.Core.Sequence;
+using WordSequenceFinder.Core.FindSequence.Command;
+using WordSequenceFinder.Core.FindSequence.Dictionary;
+using WordSequenceFinder.Core.FindSequence.Result;
 using Xunit;
 
-namespace WordSequenceFinder.Test.Unit.Core.FindSequence
+namespace WordSequenceFinder.Test.Unit.Core.FindSequence.Command
 {
     public class FindSequenceRequestHandlerTests
     {
         private Mock<IWordDictionaryReader> _readerMock;
         private Mock<ISequenceFinder> _sequenceFinderMock;
         private Mock<ISequenceResultWriter> _writerMock;
-
+        private Mock<ILogger<FindSequenceRequestHandler>> _loggerMock;
         private FindSequenceRequestHandler _requestHandler;
         private FindSequenceCommand _validCommand;
 
@@ -22,8 +24,9 @@ namespace WordSequenceFinder.Test.Unit.Core.FindSequence
             _readerMock = new Mock<IWordDictionaryReader>();
             _sequenceFinderMock = new Mock<ISequenceFinder>();
             _writerMock = new Mock<ISequenceResultWriter>();
+            _loggerMock = new Mock<ILogger<FindSequenceRequestHandler>>();
 
-            _requestHandler = new FindSequenceRequestHandler(_readerMock.Object, _sequenceFinderMock.Object, _writerMock.Object);
+            _requestHandler = new FindSequenceRequestHandler(_readerMock.Object, _sequenceFinderMock.Object, _writerMock.Object, _loggerMock.Object);
 
             _validCommand = new FindSequenceCommand 
             { 

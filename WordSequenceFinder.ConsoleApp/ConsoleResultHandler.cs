@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Linq;
 using WordSequenceFinder.ConsoleApp.Config;
-using WordSequenceFinder.Core.FindSequence;
+using WordSequenceFinder.Core.Models;
 
 namespace WordSequenceFinder.ConsoleApp
 {

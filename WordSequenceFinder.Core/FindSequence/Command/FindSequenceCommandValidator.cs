@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace WordSequenceFinder.Core.FindSequence
+namespace WordSequenceFinder.Core.FindSequence.Command
 {
     public class FindSequenceCommandValidator : AbstractValidator<FindSequenceCommand>
     {

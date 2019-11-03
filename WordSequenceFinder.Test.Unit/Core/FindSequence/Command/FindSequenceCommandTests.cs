@@ -1,8 +1,8 @@
 ﻿using FluentValidation.TestHelper;
-using WordSequenceFinder.Core.FindSequence;
+using WordSequenceFinder.Core.FindSequence.Command;
 using Xunit;
 
-namespace WordSequenceFinder.Test.Unit.Core.FindSequence
+namespace WordSequenceFinder.Test.Unit.Core.FindSequence.Command
 {
     public class FindSequenceCommandTests
     {

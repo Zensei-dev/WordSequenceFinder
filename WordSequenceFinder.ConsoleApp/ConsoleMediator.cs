@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System.Linq;
 using System.Threading.Tasks;
 using WordSequenceFinder.ConsoleApp.Config;
-using WordSequenceFinder.Core.FindSequence;
+using WordSequenceFinder.Core.Models;
 
 namespace WordSequenceFinder.ConsoleApp
 {

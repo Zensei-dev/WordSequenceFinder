@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using WordSequenceFinder.ConsoleApp.Config;
 using WordSequenceFinder.ConsoleApp.Options;
-using WordSequenceFinder.Core.FindSequence;
+using WordSequenceFinder.Core.FindSequence.Command;
 
 namespace WordSequenceFinder.ConsoleApp
 {

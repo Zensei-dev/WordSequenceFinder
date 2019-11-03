@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace WordSequenceFinder.Core.Sequence
+namespace WordSequenceFinder.Core.FindSequence.Result
 {
     public interface ISequenceResultWriter
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using WordSequenceFinder.ConsoleApp;
 using WordSequenceFinder.ConsoleApp.Config;
 using WordSequenceFinder.ConsoleApp.Options;
-using WordSequenceFinder.Core.FindSequence;
+using WordSequenceFinder.Core.FindSequence.Command;
 using Xunit;
 
 namespace WordSequenceFinder.Test.Unit.ConsoleApp

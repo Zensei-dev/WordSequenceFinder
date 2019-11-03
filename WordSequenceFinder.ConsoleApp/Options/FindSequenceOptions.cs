@@ -2,7 +2,6 @@
 
 namespace WordSequenceFinder.ConsoleApp.Options
 {
-    [Verb("find-sequence", HelpText = "Find the shortest sequence of words, given a start word and an end word.")]
     public class FindSequenceOptions
     {
         [Option('d', "dictionary-location", Required = true, HelpText = "Input dictionary location.")]

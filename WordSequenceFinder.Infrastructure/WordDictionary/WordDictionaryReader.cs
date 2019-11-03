@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using WordSequenceFinder.Core.Dictionary;
+using WordSequenceFinder.Core.FindSequence.Dictionary;
 
 namespace WordSequenceFinder.Infrastructure.Dictionary
 {

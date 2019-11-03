@@ -4,9 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Reflection;
-using WordSequenceFinder.Core.Dictionary;
 using WordSequenceFinder.Core.FindSequence;
-using WordSequenceFinder.Core.Sequence;
+using WordSequenceFinder.Core.FindSequence.Command;
+using WordSequenceFinder.Core.FindSequence.Dictionary;
+using WordSequenceFinder.Core.FindSequence.Result;
 using WordSequenceFinder.Infrastructure.Dictionary;
 using WordSequenceFinder.Infrastructure.Sequence;
 

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using WordSequenceFinder.ConsoleApp;
 using WordSequenceFinder.ConsoleApp.Config;
-using WordSequenceFinder.Core.FindSequence;
+using WordSequenceFinder.Core.Models;
 using Xunit;
 
 namespace WordSequenceFinder.Test.Unit.ConsoleApp

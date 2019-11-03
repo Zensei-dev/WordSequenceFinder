@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WordSequenceFinder.Core.FindSequence
+namespace WordSequenceFinder.Core.Models
 {
     public class HandlerResult
     {

@@ -1,27 +1,32 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WordSequenceFinder.Core.Dictionary;
-using WordSequenceFinder.Core.Sequence;
+using WordSequenceFinder.Core.FindSequence.Dictionary;
+using WordSequenceFinder.Core.FindSequence.Result;
+using WordSequenceFinder.Core.Models;
 
-namespace WordSequenceFinder.Core.FindSequence
+namespace WordSequenceFinder.Core.FindSequence.Command
 {
     public class FindSequenceRequestHandler : IRequestHandler<FindSequenceCommand, HandlerResult>
     {
         private readonly IWordDictionaryReader _wordDictionaryReader;
         private readonly ISequenceFinder _sequenceFinder;
         private readonly ISequenceResultWriter _sequenceResultWriter;
+        private readonly ILogger<FindSequenceRequestHandler> _logger;
 
         public FindSequenceRequestHandler(IWordDictionaryReader wordDictionaryReader,
                                           ISequenceFinder sequenceFinder,
-                                          ISequenceResultWriter sequenceResultWriter)
+                                          ISequenceResultWriter sequenceResultWriter,
+                                          ILogger<FindSequenceRequestHandler> logger)
         {
             _wordDictionaryReader = wordDictionaryReader;
             _sequenceFinder = sequenceFinder;
             _sequenceResultWriter = sequenceResultWriter;
+            _logger = logger;
         }
 
         public async Task<HandlerResult> Handle(FindSequenceCommand command, CancellationToken cancellationToken)
@@ -48,10 +53,13 @@ namespace WordSequenceFinder.Core.FindSequence
 
             if (validationResult.IsValid)
             {
+                _logger.LogInformation("Reading input dictionary");
                 var wordDictionary = await _wordDictionaryReader.Read(command.DictionaryLocation);
 
+                _logger.LogInformation("Finding word sequence");
                 var result = _sequenceFinder.Find(wordDictionary, command.StartWord, command.EndWord);
 
+                _logger.LogInformation("Writing results file");
                 await _sequenceResultWriter.Write(result, command.ResultLocation);
 
                 return new HandlerResult()
