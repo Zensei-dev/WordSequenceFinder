@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using WordSequenceFinder.Core.FindSequence;
 using WordSequenceFinder.Core.FindSequence.Dictionary;
 using Xunit;
@@ -12,7 +14,8 @@ namespace WordSequenceFinder.Test.Unit.Core.FindSequence
         {
             // Arrange
             var dictionary = new WordDictionary(new string[] { "Spin", "Spit", "Spat", "Spot", "Span" });
-            var sequenceFinder = new SequenceFinder();
+            var loggerMock = new Mock<ILogger<SequenceFinder>>();
+            var sequenceFinder = new SequenceFinder(loggerMock.Object);
 
             // Act
             var result = sequenceFinder.Find(dictionary, "Spin", "Spot");
@@ -30,7 +33,8 @@ namespace WordSequenceFinder.Test.Unit.Core.FindSequence
         {
             // Arrange
             var dictionary = new WordDictionary(new string[] { "Spin", "Spit", "Spat", "Spot", "Span", "Test" });
-            var sequenceFinder = new SequenceFinder();
+            var loggerMock = new Mock<ILogger<SequenceFinder>>();
+            var sequenceFinder = new SequenceFinder(loggerMock.Object);
 
             // Act
             var result = sequenceFinder.Find(dictionary, "Spin", "Test");
