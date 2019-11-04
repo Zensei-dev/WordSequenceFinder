@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using WordSequenceFinder.Core.FindSequence.Dictionary;
 using WordSequenceFinder.Core.FindSequence.Result;
 using WordSequenceFinder.Core.FindSequence.Tree;
@@ -12,6 +14,13 @@ namespace WordSequenceFinder.Core.FindSequence
 
     public class SequenceFinder : ISequenceFinder
     {
+        private readonly ILogger<SequenceFinder> _logger;
+
+        public SequenceFinder(ILogger<SequenceFinder> logger)
+        {
+            _logger = logger;
+        }
+
         public SequenceResult Find(WordDictionary wordDictionary, string startWord, string endWord)
         {
             var visitedWords = new HashSet<string>();
@@ -32,6 +41,7 @@ namespace WordSequenceFinder.Core.FindSequence
                 }
 
                 visitedWords.Add(currentNode.Value);
+                _logger.LogDebug($"Visited node {currentNode.Value}");
 
                 var neighbours = wordDictionary.FindUnvisitedNeighbours(currentNode.Value, visitedWords);
                 currentNode.AddChildren(neighbours);
@@ -39,7 +49,9 @@ namespace WordSequenceFinder.Core.FindSequence
                 foreach (var child in currentNode.Children)
                 {
                     breadthFirstSearch.Enqueue(child);
+                    visitedWords.Add(child.Value);
                 }
+                _logger.LogDebug($"Enqueued neighbours {JsonConvert.SerializeObject(neighbours)}");
             }
 
             return new SequenceResult();
